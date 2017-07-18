@@ -2,7 +2,12 @@
 
 case "$1" in
 '')
-echo "Hello $USER, please enter a command"
+echo "Hello $USER, please enter a command, or invoke 'help' for a list of actions"
+esac
+
+case "$1" in
+'help')
+echo "What can I help you with, $USER? Please choose from: 'time' and 'dice'"
 esac
 
 case "$1" in
@@ -18,7 +23,7 @@ then
 elif [ "$HOUR" -ge "13" ] && [ "$HOUR" -le "16" ]
 then
   echo "Good Afternoon $USER, it is precisely $TIME"
-elif [ "$HOUR" -ge "17" ] && [ "$HOUR" -le "20" ]
+elif [ "$HOUR" -ge "17" ] && [ "$HOUR" -le "23" ]
 then
   echo "Good Evening $USER, the time is currently $TIME"
 else
@@ -32,4 +37,12 @@ else
   echo "You should currently be working"
 fi
 ;;
+esac
+
+case "$1" in
+'dice')
+
+DICE=$(echo $RANDOM % 6 + 1 | bc)
+
+echo "You have rolled the number $DICE"
 esac
