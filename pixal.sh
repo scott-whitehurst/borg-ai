@@ -7,7 +7,7 @@ esac
 
 case "$1" in
 'help')
-echo "What can I help you with, $USER? Please choose from: 'time' and 'dice'"
+echo "What can I help you with, $USER? Please choose from: 'time' 'dice' 'recycle'"
 esac
 
 case "$1" in
@@ -45,4 +45,13 @@ case "$1" in
 DICE=$(echo $RANDOM % 6 + 1 | bc)
 
 echo "You have rolled the number $DICE"
+esac
+
+case "$1" in
+'recycle')
+
+echo -n "Hello $USER, please provide the full path to the file you wish to recycle and press [ENTER]: "
+read junk
+mv $junk ~/trash/
+echo "Your unwanted files have been placed in the recycling bin, this will be emptied at the start of next month"
 esac

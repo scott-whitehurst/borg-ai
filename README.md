@@ -10,3 +10,6 @@ When time is given as a parameter, provide two strings referring to the time of 
 
 Dice:
 Very basic diceroll to echo number from 1 to 6
+
+Recycle:
+Based on user input, move a file to the trash directory - consider configuring a cron job to empty this at the start of every month
