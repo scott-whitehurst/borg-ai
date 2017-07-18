@@ -12,7 +12,7 @@ HOUR=$(date "+%H")
 TODAY=$(date "+%w")
 TIME=$(date "+%T")
 
-if [ "$HOUR" -le "11" ]
+if [ "$HOUR" -ge "6" ] && [ "$HOUR" -le "12" ]
 then
   echo "Good Morning $USER, the time is now $TIME"
 elif [ "$HOUR" -ge "13" ] && [ "$HOUR" -le "16" ]
@@ -22,7 +22,7 @@ elif [ "$HOUR" -ge "17" ] && [ "$HOUR" -le "20" ]
 then
   echo "Good Evening $USER, the time is currently $TIME"
 else
-  echo "You should really be in bed, $USER"
+  echo "It is $TIME - You should really be in bed, $USER"
 fi
 
 if [ "$TODAY" -eq "6" ] || [ "$TODAY" -eq "7" ] 
