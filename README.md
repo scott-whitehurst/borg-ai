@@ -13,3 +13,6 @@ Very basic diceroll to echo number from 1 to 6
 
 Recycle:
 Based on user input, move a file to the trash directory - consider configuring a cron job to empty this at the start of every month
+
+Game:
+Play a game of rock, paper, scissors with the user - there is probably a simpler way to code this, but for now it seems to give fair odds

@@ -7,7 +7,7 @@ esac
 
 case "$1" in
 'help')
-echo "What can I help you with, $USER? Please choose from: 'time' 'dice' 'recycle'"
+echo "What can I help you with, $USER? Please choose from: 'time' 'dice' 'recycle' 'game'"
 esac
 
 case "$1" in
@@ -54,4 +54,35 @@ echo -n "Hello $USER, please provide the full path to the file you wish to recyc
 read junk
 mv $junk ~/trash/
 echo "Your unwanted files have been placed in the recycling bin, this will be emptied at the start of next month"
+esac
+
+case "$1" in
+'game')
+
+PIXTHROW=$(echo $RANDOM % 99 + 1 | bc)
+#1-33 is Rock, 34-66 is Paper, 67-99 is Scissors
+echo -n "Okay $USER the game is Rock, Paper, Scissors. Make your choice and hit [ENTER]: "
+read throw
+echo "You threw $throw"
+if [ $throw == "Rock" ] && [ "$PIXTHROW" -le "33" ]
+then echo -en "I throw rock\nIt is a draw"
+elif [ $throw == "Rock" ] && [ "$PIXTHROW" -ge "34" -a "$PIXTHROW" -le "66" ]
+then echo -en "I throw paper\nI have won ^^"
+elif [ $throw == "Rock" ] && [ "$PIXTHROW" -ge "67" -a "$PIXTHROW" -le "99" ]
+then echo -en "I throw scissors\nYou have won, well done $USER"
+elif [ $throw == "Paper" ] && [ "$PIXTHROW" -le "33" ]
+then echo -en "I throw rock\nYou have beaten me!"
+elif [ $throw == "Paper" ] && [ "$PIXTHROW" -ge "34" -a "$PIXTHROW" -le "66" ]
+then echo -en "I throw Paper\nAh, it is a draw"
+elif [ $throw == "Paper" ] && [ "$PIXTHROW" -ge "67" -a "$PIXTHROW" -le "99" ]
+then echo -en "I throw scissors\nI have triumphed over $USER"
+elif [ $throw == "Scissors" ] && [ "$PIXTHROW" -le "33" ]
+then echo -en "I throw rock\nMy rock beats your scissors!"
+elif [ $throw == "Scissors" ] && [ "$PIXTHROW" -ge "34" -a "$PIXTHROW" -le "66" ]
+then echo -en "I throw paper\nCongratulations, $USER"
+elif [ $throw == "Scissors" ] && [ "$PIXTHROW" -ge "67" -a "$PIXTHROW" -le "99" ]
+then echo -en "I throw scissors\nTwo scissors? It is a draw then"
+else echo "Sorry, I didn't register that, please try again"
+fi
+;;
 esac
