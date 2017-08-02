@@ -15,7 +15,7 @@ Recycle:
 Based on user input, move a file to the trash directory (reporting error if file not found) - consider configuring a cron job to empty this at the start of every month
 
 Game:
-Play a game of rock, paper, scissors with the user - there is probably a simpler way to code this, but for now it seems to give fair odds
+Play a game of rock, paper, scissors with the user - this was previously a long series of if and elif comparisons of user input against the random number. Now it takes the form of multiple nested case statements to match conditions for input vs ai to reach a result
 
 Unrecognised:
 Inform the user of the error and direct them to the help command to check functions

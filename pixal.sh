@@ -57,27 +57,35 @@ PIXTHROW=$(echo $RANDOM % 99 + 1 | bc)
 echo -n "Okay $USER the game is Rock, Paper, Scissors. Make your choice and hit [ENTER]: "
 read throw
 echo "You threw $throw"
-if [ $throw == "Rock" ] && [ "$PIXTHROW" -le "33" ]
-then echo -e "I throw rock\nIt is a draw"
-elif [ $throw == "Rock" ] && [ "$PIXTHROW" -ge "34" -a "$PIXTHROW" -le "66" ]
-then echo -e "I throw paper\nI have won ^^"
-elif [ $throw == "Rock" ] && [ "$PIXTHROW" -ge "67" -a "$PIXTHROW" -le "99" ]
-then echo -e "I throw scissors\nYou have won, well done $USER"
-elif [ $throw == "Paper" ] && [ "$PIXTHROW" -le "33" ]
-then echo -e "I throw rock\nYou have beaten me!"
-elif [ $throw == "Paper" ] && [ "$PIXTHROW" -ge "34" -a "$PIXTHROW" -le "66" ]
-then echo -e "I throw Paper\nAh, it is a draw"
-elif [ $throw == "Paper" ] && [ "$PIXTHROW" -ge "67" -a "$PIXTHROW" -le "99" ]
-then echo -e "I throw scissors\nI have triumphed over $USER"
-elif [ $throw == "Scissors" ] && [ "$PIXTHROW" -le "33" ]
-then echo -e "I throw rock\nMy rock beats your scissors!"
-elif [ $throw == "Scissors" ] && [ "$PIXTHROW" -ge "34" -a "$PIXTHROW" -le "66" ]
-then echo -e "I throw paper\nCongratulations, $USER"
-elif [ $throw == "Scissors" ] && [ "$PIXTHROW" -ge "67" -a "$PIXTHROW" -le "99" ]
-then echo -e "I throw scissors\nTwo scissors? It is a draw then"
-else echo "Sorry, I didn't register that, please try again"
-fi
+  if [ "$PIXTHROW" -le "33" ]
+  then PIXTHROW=Rock
+  elif [ "$PIXTHROW" -ge "34" -a "$PIXTHROW" -le "66" ]
+  then PIXTHROW=Paper
+  else PIXTHROW=Scissors
+  fi
+    case $throw in
+    'Rock') 
+        case $PIXTHROW in
+        "Rock") echo -e "I throw rock\nIt is a draw" ;;
+        "Paper") echo -e "I throw paper\nI have won ^^" ;;
+        "Scissors") echo -e "I throw scissors\nYou have won, well done $USER" ;;
+    esac ;;
+    'Paper') 
+        case $PIXTHROW in
+        "Rock") echo -e "I throw rock\nYou have beaten me!" ;;
+        "Paper") echo -e "I throw Paper\nAh, it is a draw" ;;
+        "Scissors") echo -e "I throw scissors\nI have triumphed over $USER" ;;
+    esac ;;
+    'Scissors')
+        case $PIXTHROW in
+        "Rock") echo -e "I throw rock\nMy rock beats your scissors!" ;;
+        "Paper") echo -e "I throw paper\nCongratulations, $USER" ;;
+        "Scissors") echo -e "I throw scissors\nTwo scissors? It is a draw then" ;;
+    esac ;;
+    *) echo "Sorry, I didn't register that, please try again" ;;
+    esac
 ;;
+
 
 *)
 echo "Sorry I don't know that command, please check your spelling or view the available functions with 'help'"
