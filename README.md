@@ -16,3 +16,6 @@ Based on user input, move a file to the trash directory (reporting error if file
 
 Game:
 Play a game of rock, paper, scissors with the user - there is probably a simpler way to code this, but for now it seems to give fair odds
+
+Unrecognised:
+Inform the user of the error and direct them to the help command to check functions

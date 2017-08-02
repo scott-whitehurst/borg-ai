@@ -10,7 +10,6 @@ echo "What can I help you with, $USER? Please choose from: 'time' 'dice' 'recycl
 ;;
 
 'time')
-
 HOUR=$(date "+%H")
 TODAY=$(date "+%w")
 TIME=$(date "+%T")
@@ -37,14 +36,11 @@ fi
 ;;
 
 'dice')
-
 DICE=$(echo $RANDOM % 6 + 1 | bc)
-
 echo "You have rolled the number $DICE"
 ;;
 
 'recycle')
-
 echo -n "Hello $USER, please provide the full path to the file you wish to recycle and press [ENTER]: "
 read junk
 mv $junk ~/trash/
@@ -56,7 +52,6 @@ fi
 ;;
 
 'game')
-
 PIXTHROW=$(echo $RANDOM % 99 + 1 | bc)
 #1-33 is Rock, 34-66 is Paper, 67-99 is Scissors
 echo -n "Okay $USER the game is Rock, Paper, Scissors. Make your choice and hit [ENTER]: "
@@ -82,5 +77,9 @@ elif [ $throw == "Scissors" ] && [ "$PIXTHROW" -ge "67" -a "$PIXTHROW" -le "99" 
 then echo -e "I throw scissors\nTwo scissors? It is a draw then"
 else echo "Sorry, I didn't register that, please try again"
 fi
+;;
+
+*)
+echo "Sorry I don't know that command, please check your spelling or view the available functions with 'help'"
 ;;
 esac
