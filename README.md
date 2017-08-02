@@ -5,6 +5,9 @@ Functionality based on input:
 None:
 Echo the user's name when invoked, list the available functions
 
+Help:
+Display the commands available for description, capture user input and describe the functionality and how to properly invoke that action
+
 Time:
 When time is given as a parameter, provide two strings referring to the time of day and whether the user should be on/off the job
 

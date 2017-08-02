@@ -6,7 +6,15 @@ echo "Hello $USER, please enter a command, or invoke 'help' for a list of action
 ;;
 
 'help')
-echo "What can I help you with, $USER? Please choose from: 'time' 'dice' 'recycle' 'game'"
+echo "What can I help you with, $USER? Please choose from: 'time' 'dice' 'recycle' or 'game' then press [ENTER]:"
+read helpwith
+  case $helpwith in
+  'time') echo "Invoke this to check the current time of day" ;;
+  'dice') echo "Specify the 'dice' command followed by a number and I will roll that many virtual dice for you" ;;
+  'recycle') echo "This function is currently in development, however I will prompt you for a file to be trashed and move it to the recycling bin" ;;
+  'game') echo "Apply this command to play a game of 'Rock, Paper, Scissors' with me" ;;
+  *) echo "Sorry I don't understand, please double-check the commands available for help" ;;
+  esac
 ;;
 
 'time')
@@ -36,8 +44,13 @@ fi
 ;;
 
 'dice')
-DICE=$(echo $RANDOM % 6 + 1 | bc)
-echo "You have rolled the number $DICE"
+DICE1=$(echo $RANDOM % 6 + 1 | bc)
+DICE2=$(echo $RANDOM % 6 + 1 | bc)
+  case $2 in
+  '1') echo "You have rolled the number $DICE1" ;;
+  '2') echo "You have rolled $DICE1 and $DICE2" ;;
+  *) echo "Error - please check dice instructions with 'help dice'"
+  esac
 ;;
 
 'recycle')
