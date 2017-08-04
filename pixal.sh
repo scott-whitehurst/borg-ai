@@ -9,7 +9,7 @@ echo "Hello $USER, please enter a command, or invoke 'help' for a list of action
 echo "What can I help you with, $USER? Please choose from: 'time' 'dice' 'recycle' or 'game' then press [ENTER]:"
 read helpwith
   case $helpwith in
-  'extract') echo "Work in progress - extract the contents of an archive file"
+  'extract') echo "Work in progress - extract the contents of an archive file" ;;
   'time') echo "Invoke this to check the current time of day" ;;
   'dice') echo "Specify the 'dice' command followed by a number and I will roll that many virtual dice for you" ;;
   'recycle') echo "This function is currently in development, however I will prompt you for a file to be staged for deletion and move it to the recycling bin" ;;
@@ -19,13 +19,19 @@ read helpwith
 ;;
 
 'extract')
+SUCCESS=$(echo 'I have extracted those files to the /tmp directory for you')
 echo "Please provide the full path to the archive file you want extracted and press [ENTER]:"
-read archive
+read ARCHIVE
 if [ $? != "0" ]
-then tar zxvf $archive
-echo "I have extracted those files for you"
+then echo "Please double-check the name of the archive file and confirm it exists"
 else
-echo "Please double-check the name of the archive file and confirm it exists"
+  case $ARCHIVE in
+  *.tar) tar -xvf $ARCHIVE -C /tmp/ \ $SUCCESS ;;
+  *.tar.gz) tar -zxvf $ARCHIVE -C /tmp/ \ $SUCCESS ;;
+  *.zip) unzip -d /tmp/ $ARCHIVE \ $SUCCESS ;;
+  *.7z) yum install p7zip-full \ 7z x $ARCHIVE \ $SUCCESS;;
+  *) echo "Sorry I don't recognise that file - check the filename and location or it may be an archive format I don't support" ;;
+  esac
 fi
 ;;
 
