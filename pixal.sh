@@ -9,12 +9,24 @@ echo "Hello $USER, please enter a command, or invoke 'help' for a list of action
 echo "What can I help you with, $USER? Please choose from: 'time' 'dice' 'recycle' or 'game' then press [ENTER]:"
 read helpwith
   case $helpwith in
+  'extract') echo "Work in progress - extract the contents of an archive file"
   'time') echo "Invoke this to check the current time of day" ;;
   'dice') echo "Specify the 'dice' command followed by a number and I will roll that many virtual dice for you" ;;
-  'recycle') echo "This function is currently in development, however I will prompt you for a file to be trashed and move it to the recycling bin" ;;
+  'recycle') echo "This function is currently in development, however I will prompt you for a file to be staged for deletion and move it to the recycling bin" ;;
   'game') echo "Apply this command to play a game of 'Rock, Paper, Scissors' with me" ;;
   *) echo "Sorry I don't understand, please double-check the commands available for help" ;;
   esac
+;;
+
+'extract')
+echo "Please provide the full path to the archive file you want extracted and press [ENTER]:"
+read archive
+if [ $? != "0" ]
+then tar zxvf $archive
+echo "I have extracted those files for you"
+else
+echo "Please double-check the name of the archive file and confirm it exists"
+fi
 ;;
 
 'time')
@@ -54,6 +66,8 @@ DICE2=$(echo $RANDOM % 6 + 1 | bc)
 ;;
 
 'recycle')
+DAYMONTH=date "+%d"
+
 echo -n "Hello $USER, please provide the full path to the file you wish to recycle and press [ENTER]: "
 read junk
 mv $junk ~/trash/
@@ -61,6 +75,12 @@ if [ $? == "1" ]
 then echo "Sorry I have been unable to locate that file, please check the directory path"
 else
 echo "Your unwanted files have been placed in the recycling bin, this will be emptied at the start of next month"
+
+# Deletes the contents of the recycling bin on the first of the month
+  if [ $DAYMONTH == "01" ]
+  then rm -rf ~/trash/*
+  fi
+
 fi
 ;;
 
