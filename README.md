@@ -8,7 +8,7 @@ Echo the user's name when invoked, list the available functions
 Help:
 Display the commands available for description, capture user input and describe the functionality and how to properly invoke that action
 
-Extract: Currently will extract a tar file if it exists - planned functionality would be to perform the required extract command based on the extension (tar,zip,etc) into a directory structure determined by the content. Consider the opposite bundle action also
+Extract: Extract an archive file of the most common formats, performing requisite action based on the extension. Currently outputs to /tmp, consider a structure determined by the content. Consider the opposite bundle action also
 
 Time:
 When time is given as a parameter, provide two strings referring to the time of day and whether the user should be on/off the job

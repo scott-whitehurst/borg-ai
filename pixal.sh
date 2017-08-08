@@ -19,17 +19,22 @@ read helpwith
 ;;
 
 'extract')
-SUCCESS=$(echo 'I have extracted those files to the /tmp directory for you')
+SUCCESS="I have extracted those files to the /tmp directory for you"
 echo "Please provide the full path to the archive file you want extracted and press [ENTER]:"
 read ARCHIVE
-if [ $? != "0" ]
+if [ -z "$ARCHIVE" ]
 then echo "Please double-check the name of the archive file and confirm it exists"
 else
   case $ARCHIVE in
-  *.tar) tar -xvf $ARCHIVE -C /tmp/ \ $SUCCESS ;;
-  *.tar.gz) tar -zxvf $ARCHIVE -C /tmp/ \ $SUCCESS ;;
-  *.zip) unzip -d /tmp/ $ARCHIVE \ $SUCCESS ;;
-  *.7z) yum install p7zip-full \ 7z x $ARCHIVE \ $SUCCESS;;
+  *.tar) tar -xvf $ARCHIVE -C /tmp/ 
+        echo $SUCCESS ;;
+  *.tar.gz) tar -zxvf $ARCHIVE -C /tmp/ 
+        echo $SUCCESS ;;
+  *.zip) unzip -d /tmp/ $ARCHIVE 
+        echo $SUCCESS ;;
+  *.7z) yum install p7zip-full 
+        7z x $ARCHIVE 
+        echo $SUCCESS;;
   *) echo "Sorry I don't recognise that file - check the filename and location or it may be an archive format I don't support" ;;
   esac
 fi
